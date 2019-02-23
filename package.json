@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "installandbuild": "npm install && npm build",
     "precommit": "lint-staged",
     "prettier": "prettier src/**/*.ts --write && git status",
     "prepublish:npm": "npm run build",
