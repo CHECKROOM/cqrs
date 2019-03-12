@@ -19,18 +19,18 @@ export abstract class AggregateRoot {
     return this.events;
   }
 
-  loadFromHistory(history: IEvent[]) {
-    history.forEach(event => this.apply(event, true));
+  async loadFromHistory(history: IEvent[]) {
+    history.forEach(async (event) => await this.apply(event, true));
   }
 
-  apply(event: IEvent, isFromHistory = false) {
+  async apply(event: IEvent, isFromHistory = false) {
     if (!isFromHistory && !this.autoCommit) {
       this.events.push(event);
     }
     this.autoCommit && this.publish(event);
 
     const handler = this.getEventHandler(event);
-    handler && handler.call(this, event);
+    handler && await handler.call(this, event);
   }
 
   private getEventHandler(event: IEvent): Function | undefined {
