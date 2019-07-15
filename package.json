@@ -35,5 +35,9 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "@nestjs/core": "^6.5.2",
+    "reflect-metadata": "^0.1.13"
   }
 }
